@@ -1,0 +1,37 @@
+server:
+  http:
+    addr: 0.0.0.0:8120
+    timeout: 5s
+  grpc:
+    addr: 0.0.0.0:9120
+    timeout: 5s
+data:
+  database:
+    driver: mysql
+    source: root:root@tcp(127.0.0.1:3306)/test
+  redis:
+    addr: 127.0.0.1:6379
+    read_timeout: 1s
+    write_timeout: 1s
+
+jwt:
+  key: doasfbasjkbdasndbwjqbfwoqbh3rh0f8ewhfu
+  expire_time: 86400
+
+token:
+  auth:
+    key: doasfbasjkbdasndbwjqbfwoqbh3rh0f8ewhfu
+    db: 0
+    refresh_token_expiration: 86400
+    access_token_expiration: 3600
+
+tokenV2:
+  auth:
+    key: doasfbasjkbdasndbwjqbfwoqbh3rh0f8ewhfu
+    db: 0
+    refresh_token_expiration: 86400
+    access_token_expiration: 3600
+  device:
+    device_conf_map:
+      app: 3
+      pc: 3

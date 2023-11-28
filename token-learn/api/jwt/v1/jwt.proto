@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package jwt.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "token-learn/api/jwt/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.jwt.v1";
+option java_outer_classname = "JwtProtoV1";
+
+service Jwt {
+  rpc GenerateJwt (GenerateJwtRequest) returns (GenerateJwtResponse) {
+    option (google.api.http) = {
+      post: "/v1/jwt/create"
+      body: "*"
+    };
+  };
+
+  rpc ValidateJwt (ValidateJwtRequest) returns (ValidateJwtResponse) {
+    option (google.api.http) = {
+      post: "/v1/jwt/valid"
+      body: "*"
+    };
+  };
+}
+
+message GenerateJwtRequest {
+  string username=1;
+  string email=2;
+  string phone=3;
+}
+
+message GenerateJwtResponse {
+  string token = 1;
+}
+
+message ValidateJwtRequest {
+  string token = 1;
+}
+
+message ValidateJwtResponse {
+  bool valid = 1;
+}

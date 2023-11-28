@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package token.v2;
+
+import "google/api/annotations.proto";
+
+option go_package = "token-learn/api/token/v2;v2";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.token.v2";
+option java_outer_classname = "TokenProtoV2";
+
+service TokenV2 {
+  rpc GenerateTokenV2 (GenerateTokenV2Request) returns (GenerateTokenV2Response) {
+    option (google.api.http) = {
+      post: "/v2/token/create"
+      body: "*"
+    };
+  };
+
+  rpc DeleteTokenV2 (DeleteTokenV2Request) returns (DeleteTokenV2Response) {
+    option (google.api.http) = {
+      post: "/v2/token/delete"
+      body: "*"
+    };
+  };
+
+  rpc ValidateTokenV2 (ValidateTokenV2Request) returns (ValidateTokenV2Response) {
+    option (google.api.http) = {
+      post: "/v2/token/valid"
+      body: "*"
+    };
+  };
+
+  rpc CreateAccessTokenV2 (CreateAccessTokenV2Request) returns (CreateAccessTokenV2Response) {
+    option (google.api.http) = {
+      post: "/v2/token/access"
+      body: "*"
+    };
+  };
+}
+
+message GenerateTokenV2Request {
+  string uid=1;
+  string device_type = 2;
+  string device_id = 3;
+}
+
+message GenerateTokenV2Response {
+  string refresh_token = 1;
+  int64 refresh_token_expiration = 2;
+  string access_token = 3;
+  int64 access_token_expiration = 4;
+}
+
+message DeleteTokenV2Request {
+  string uid = 1;
+  string type = 2;
+  bool delete_all=3;
+}
+
+message DeleteTokenV2Response {
+  bool deleted = 1;
+}
+
+message ValidateTokenV2Request {
+  string uid = 1;
+  string token = 2;
+  string type = 3;
+}
+
+message ValidateTokenV2Response {
+  bool valid = 1;
+}
+
+message CreateAccessTokenV2Request {
+  string uid = 1;
+  string refresh_token = 2;
+}
+
+message CreateAccessTokenV2Response {
+  string access_token = 1;
+  int64 access_token_expiration = 2;
+}

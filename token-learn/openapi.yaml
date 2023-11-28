@@ -1,0 +1,338 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: ""
+    version: 0.0.1
+paths:
+    /v1/jwt/create:
+        post:
+            tags:
+                - Jwt
+            operationId: Jwt_GenerateJwt
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/jwt.v1.GenerateJwtRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/jwt.v1.GenerateJwtResponse'
+    /v1/jwt/valid:
+        post:
+            tags:
+                - Jwt
+            operationId: Jwt_ValidateJwt
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/jwt.v1.ValidateJwtRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/jwt.v1.ValidateJwtResponse'
+    /v1/token/access:
+        post:
+            tags:
+                - Token
+            operationId: Token_CreateAccessToken
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/token.v1.CreateAccessTokenRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/token.v1.CreateAccessTokenResponse'
+    /v1/token/create:
+        post:
+            tags:
+                - Token
+            operationId: Token_GenerateToken
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/token.v1.GenerateTokenRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/token.v1.GenerateTokenResponse'
+    /v1/token/delete:
+        post:
+            tags:
+                - Token
+            operationId: Token_DeleteToken
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/token.v1.DeleteTokenRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/token.v1.DeleteTokenResponse'
+    /v1/token/valid:
+        post:
+            tags:
+                - Token
+            operationId: Token_ValidateToken
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/token.v1.ValidateTokenRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/token.v1.ValidateTokenResponse'
+    /v2/token/access:
+        post:
+            tags:
+                - TokenV2
+            operationId: TokenV2_CreateAccessTokenV2
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/token.v2.CreateAccessTokenV2Request'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/token.v2.CreateAccessTokenV2Response'
+    /v2/token/create:
+        post:
+            tags:
+                - TokenV2
+            operationId: TokenV2_GenerateTokenV2
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/token.v2.GenerateTokenV2Request'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/token.v2.GenerateTokenV2Response'
+    /v2/token/delete:
+        post:
+            tags:
+                - TokenV2
+            operationId: TokenV2_DeleteTokenV2
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/token.v2.DeleteTokenV2Request'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/token.v2.DeleteTokenV2Response'
+    /v2/token/valid:
+        post:
+            tags:
+                - TokenV2
+            operationId: TokenV2_ValidateTokenV2
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/token.v2.ValidateTokenV2Request'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/token.v2.ValidateTokenV2Response'
+components:
+    schemas:
+        jwt.v1.GenerateJwtRequest:
+            type: object
+            properties:
+                username:
+                    type: string
+                email:
+                    type: string
+                phone:
+                    type: string
+        jwt.v1.GenerateJwtResponse:
+            type: object
+            properties:
+                token:
+                    type: string
+        jwt.v1.ValidateJwtRequest:
+            type: object
+            properties:
+                token:
+                    type: string
+        jwt.v1.ValidateJwtResponse:
+            type: object
+            properties:
+                valid:
+                    type: boolean
+        token.v1.CreateAccessTokenRequest:
+            type: object
+            properties:
+                uid:
+                    type: string
+                refreshToken:
+                    type: string
+        token.v1.CreateAccessTokenResponse:
+            type: object
+            properties:
+                accessToken:
+                    type: string
+                accessTokenExpiration:
+                    type: string
+        token.v1.DeleteTokenRequest:
+            type: object
+            properties:
+                uid:
+                    type: string
+                type:
+                    type: string
+                deleteAll:
+                    type: boolean
+        token.v1.DeleteTokenResponse:
+            type: object
+            properties:
+                deleted:
+                    type: boolean
+        token.v1.GenerateTokenRequest:
+            type: object
+            properties:
+                uid:
+                    type: string
+        token.v1.GenerateTokenResponse:
+            type: object
+            properties:
+                refreshToken:
+                    type: string
+                refreshTokenExpiration:
+                    type: string
+                accessToken:
+                    type: string
+                accessTokenExpiration:
+                    type: string
+        token.v1.ValidateTokenRequest:
+            type: object
+            properties:
+                uid:
+                    type: string
+                token:
+                    type: string
+                type:
+                    type: string
+        token.v1.ValidateTokenResponse:
+            type: object
+            properties:
+                valid:
+                    type: boolean
+        token.v2.CreateAccessTokenV2Request:
+            type: object
+            properties:
+                uid:
+                    type: string
+                refreshToken:
+                    type: string
+        token.v2.CreateAccessTokenV2Response:
+            type: object
+            properties:
+                accessToken:
+                    type: string
+                accessTokenExpiration:
+                    type: string
+        token.v2.DeleteTokenV2Request:
+            type: object
+            properties:
+                uid:
+                    type: string
+                type:
+                    type: string
+                deleteAll:
+                    type: boolean
+        token.v2.DeleteTokenV2Response:
+            type: object
+            properties:
+                deleted:
+                    type: boolean
+        token.v2.GenerateTokenV2Request:
+            type: object
+            properties:
+                uid:
+                    type: string
+                deviceType:
+                    type: string
+                deviceId:
+                    type: string
+        token.v2.GenerateTokenV2Response:
+            type: object
+            properties:
+                refreshToken:
+                    type: string
+                refreshTokenExpiration:
+                    type: string
+                accessToken:
+                    type: string
+                accessTokenExpiration:
+                    type: string
+        token.v2.ValidateTokenV2Request:
+            type: object
+            properties:
+                uid:
+                    type: string
+                token:
+                    type: string
+                type:
+                    type: string
+        token.v2.ValidateTokenV2Response:
+            type: object
+            properties:
+                valid:
+                    type: boolean
+tags:
+    - name: Jwt
+    - name: Token
+    - name: TokenV2

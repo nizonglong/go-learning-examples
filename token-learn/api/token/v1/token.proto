@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package token.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "token-learn/api/token/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.token.v1";
+option java_outer_classname = "TokenProtoV1";
+
+service Token {
+  rpc GenerateToken (GenerateTokenRequest) returns (GenerateTokenResponse) {
+    option (google.api.http) = {
+      post: "/v1/token/create"
+      body: "*"
+    };
+  };
+
+  rpc DeleteToken (DeleteTokenRequest) returns (DeleteTokenResponse) {
+    option (google.api.http) = {
+      post: "/v1/token/delete"
+      body: "*"
+    };
+  };
+
+  rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse) {
+    option (google.api.http) = {
+      post: "/v1/token/valid"
+      body: "*"
+    };
+  };
+
+  rpc CreateAccessToken (CreateAccessTokenRequest) returns (CreateAccessTokenResponse) {
+    option (google.api.http) = {
+      post: "/v1/token/access"
+      body: "*"
+    };
+  };
+}
+
+message GenerateTokenRequest {
+  string uid=1;
+}
+
+message GenerateTokenResponse {
+  string refresh_token = 1;
+  int64 refresh_token_expiration = 2;
+  string access_token = 3;
+  int64 access_token_expiration = 4;
+}
+
+message DeleteTokenRequest {
+  string uid = 1;
+  string type = 2;
+  bool delete_all=3;
+}
+
+message DeleteTokenResponse {
+  bool deleted = 1;
+}
+
+message ValidateTokenRequest {
+  string uid = 1;
+  string token = 2;
+  string type = 3;
+}
+
+message ValidateTokenResponse {
+  bool valid = 1;
+}
+
+message CreateAccessTokenRequest {
+  string uid = 1;
+  string refresh_token = 2;
+}
+
+message CreateAccessTokenResponse {
+  string access_token = 1;
+  int64 access_token_expiration = 2;
+}
